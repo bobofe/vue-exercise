@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>
+            is属性：①动态加载组件；②特殊组件的模板受限
+            对于特殊标签，如果不使用is，组件会跑到外面，不能正常显示
+        </p>
+        <div>{{mes}}</div>
+        <table>
+            <thead>
+                <tr>
+                    <td>类目</td>
+                    <td>数量</td>
+                 </tr>
+                </thead>
+            <tbody>
+                <tr is='my-row'></tr> 
+            </tbody>    
+        </table>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                mes:'我是test'
+            },
+            components: {
+                'myRow': {
+                    data: function () { 
+                        return{
+
+                        }
+                    },
+                    template: `<tr><td>电视</td><td>10</td></tr>`
+                 }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .v-enter,.v-leave-to{
+            opacity: 0;
+            color:red;
+        }
+        .v-enter-active,.v-leave-active{
+            transition: all 3s;
+        }
+        .v-enter-to,.v-leave-to{
+            opacity: 0.5;
+            color:blue
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p>动画属性</p>
+        <ul>
+            <li>enter：要进入</li>
+            <li>enter-active：进入了</li>
+            <li>enter-to：即将完全进入</li>
+            <li>leave：离开</li>
+            <li>leave-active：离开中</li>
+            <li>leave-to：即将完全离开</li>
+        </ul>
+        <transition>
+            <div v-if="show">wwwwwww</div>
+        </transition>
+        <button @click="toggle">点我切换</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                show:true
+            },
+            components: {
+                'myRow': {
+                    data: function () { 
+                        return{
+
+                        }
+                    },
+                    template: `<tr><td>电视</td><td>10</td></tr>`
+                 }
+            },
+            methods:{
+                toggle:function(){
+                    this.show = !this.show
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.7.2/animate.css">
+    <script src="https://cdn.bootcss.com/velocity/2.0.5/velocity.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>动画属性</p>
+        <ul>
+            <li>enter：要进入</li>
+            <li>enter-active：进入了,设置动画属性</li>
+            <li>enter-to：即将完全进入</li>
+            <li>leave：离开</li>
+            <li>leave-active：离开中，设置动画属性</li>
+            <li>leave-to：即将完全离开</li>
+        </ul>
+        <transition name="bbb"
+                    @before-enter="handleBeforeEnter"
+                    @enter="handleEnter"
+                    @after-enter="handleAfter"
+        >
+            <div v-if="show">wwwwwww</div>
+        </transition>
+        <button @click="toggle">我是动画2</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                show:true
+            },
+            components: {
+                'myRow': {
+                    data: function () { 
+                        return{
+
+                        }
+                    },
+                    template: `<tr><td>电视</td><td>10</td></tr>`
+                 }
+            },
+            methods:{
+                toggle:function(){
+                    this.show = !this.show
+                },
+                handleBeforeEnter:function(el){
+                    el.style.opacity = 0,
+                    el.style.backgroundColor = '#ccc'
+                    // el.style.color = 'yellow'
+                },
+                handleEnter:function(el,done){
+                    Velocity(
+                        el,
+                        {
+                            opacity:1,
+                            backgroundColor: "#ada",
+                            backgroundColorAlpha: 0.5,
+                        },
+                        {
+                            duration:2000,
+                            complate: done,
+                            easing: "swing",       // 缓动效果
+                        }
+                    )
+                },
+                handleAfter:function(el){
+                    el.style.color='black'
+                }
+
+            }
+        });
+    </script>
+</body>
+</html>

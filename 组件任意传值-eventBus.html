@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>谁想要谁订阅，谁传递谁监听</p>
+        <div>我的子组件的名字是：{{mySonName}}</div>
+        <son v-on:get-my-son-name="getMySonName"></son>
+        <son1></son1>
+        <son2></son2>
+        <daughter></daughter>
+    </div>
+    <script>
+        var eventBus=new Vue();
+
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                mes:'我是test',
+                mySonName:''
+            },
+            methods:{
+                getMySonName(name){
+                    this.mySonName=name;
+                    console.log('222')
+                }
+            },
+            components: {
+                'son1': {
+                    data: function () { 
+                        return{
+                            name:'son1'
+                        }
+                    },
+                    template: `<button @click="postMyName">我是子组件，我要把我的名字传给同级的daughter组件</button>`,
+                    methods:{
+                        postMyName(){
+                            eventBus.$emit('get-brother1-name',this.name)
+                        }
+                    }
+                },
+                'son2': {
+                    data: function () { 
+                        return{
+                            name:'son2'
+                        }
+                    },
+                    template: `<button @click="postMyName">我是子组件2，我要把我的名字传给同级的daughter组件</button>`,
+                    methods:{
+                        postMyName(){
+                            eventBus.$emit('get-brother2-name',this.name)
+                        }
+                    }
+                },
+                'daughter': {
+                    data: function () { 
+                        return{
+                            brother1:'',
+                            brother2:''
+                        }
+                    },
+                    template: `<div>我的两个兄弟的名字是：{{brother1}}和{{brother2}}</div>`,
+                    mounted(){
+                        eventBus.$on('get-brother1-name',name=>{
+                            this.brother1=name;
+                        })
+                        eventBus.$on('get-brother2-name',name=>{
+                            this.brother2=name;
+                        })
+                    }
+                },
+            }
+        });
+
+        eventBus.$on('')
+    </script>
+</body>
+</html>

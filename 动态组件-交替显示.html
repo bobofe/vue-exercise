@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>
+            动态组件
+        </p>
+        <button @click = "toggleCom">点我切换组件</button>
+        <compontent :is="currentItem"></compontent>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                list:[],
+                currentItem:'childOne'
+            },
+            methods:{
+                toggleCom:function(){
+                    if(this.currentItem ==='childOne') {
+                        this.currentItem = 'childTwo'
+                    }else{
+                        this.currentItem = 'childOne'
+                    }
+                }
+            },
+            components: {
+                childOne: {
+                    data: function () { 
+                        return{
+                            
+                        }
+                    },
+                    template: `<div>组件一</div>`
+                 },
+                 childTwo: {
+                    data: function () { 
+                        return{
+
+                        }
+                    },
+                    template: `<div>组件二</div>`
+                 },
+                 chilThree: {
+                    data: function () { 
+                        return{
+
+                        }
+                    },
+                    template: `<div>组件三</div>`
+                 }
+            }
+        });
+    </script>
+</body>
+</html>

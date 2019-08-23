@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>动画属性</p>
+        <ul>
+            <li>enter：要进入</li>
+            <li>enter-active：进入了</li>
+            <li>enter-to：即将完全进入</li>
+            <li>leave：离开</li>
+            <li>leave-active：离开中</li>
+            <li>leave-to：即将完全离开</li>
+        </ul>
+        <transition @before-enter="handleBeforeEnter"
+                    @enter="handleEnter"
+                    @after-enter="handleAfterEnter"
+        >
+            <div v-if="show">wwwwwww</div>
+        </transition>
+        <button @click="toggle">点我切换</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                show:true
+            },
+            components: {
+                'myRow': {
+                    data: function () { 
+                        return{
+
+                        }
+                    },
+                    template: `<tr><td>电视</td><td>10</td></tr>`
+                 }
+            },
+            methods:{
+                toggle:function(){
+                    this.show = !this.show
+                },
+                handleBeforeEnter: function(el){
+                    // 参数el必须加
+                    el.style.color='red';
+                },
+                handleEnter: function(el,done){
+                    // 参数el必须加
+                    setTimeout(function(){
+                        el.style.color='black';
+                    },2000)
+                    setTimeout(function(){
+                        // done函数表示enter函数执行完了，会自动触发afterEnter的执行，相当于一个信号
+                        done()
+                    },5000)
+                },
+                handleAfterEnter: function(el){
+                    el.style.color='yellow';
+                }
+                
+            }
+        });
+    </script>
+</body>
+</html>

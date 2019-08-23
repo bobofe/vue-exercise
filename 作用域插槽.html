@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>
+            作用域插槽：子组件有一组数据，现在要渲染这组数据，但是渲染方式由父组件决定，父组件说渲染成div就渲染div，父组件说渲染成p就渲染成p
+            在这个过程中，子组件只提供了数据
+        </p>
+        <child>
+            <template slot-scope="propObj">
+                <p>{{propObj.item}}</p>
+            </template>
+        </child>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+            },
+            components: {
+                'child': {
+                    data: function () {
+                        return{
+                            list:[1,2,3,4]
+                        }
+                    },
+                    template: `<div>
+                                    <slot v-for="item of list" :item=item>
+                                    </slot>
+                              </div>`
+                 }
+            }
+        });
+    </script>
+</body>
+</html>

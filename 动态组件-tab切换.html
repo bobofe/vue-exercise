@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>
+            动态组件：tab切换
+        </p>
+        <ul>
+            <li v-for="item in list" 
+                @click = "currentItem=item"
+                :key="item">
+                {{item}}
+            </li>
+        </ul>
+        <compontent :is="currentItem"></compontent>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                list:['tabOne','tabTwo','tabThree'],
+                currentItem:'tabOne'
+            },
+            methods:{
+            
+            },
+            components: {
+                tabOne: {
+                    data: function () { 
+                        return{
+                            
+                        }
+                    },
+                    template: `<div>我是tab1</div>`
+                },
+                tabTwo: {
+                    data: function () { 
+                        return{
+
+                        }
+                    },
+                    template: `<div>我是tab二</div>`
+                 },
+                tabThree: {
+                    data: function () { 
+                        return{
+
+                        }
+                    },
+                    template: `<div>我是tab3</div>`
+                 }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>
+            ref属性：ref 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 $refs 对象上。
+            如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例
+            总结：获取DOM
+        </p>
+        <button ref="d" @click="getDom">点我获取我</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                mes:'我是test'
+            },
+            methods:{
+                getDom(){
+                    console.log(this.$refs.d)
+                }
+            },
+            components: {
+                'myRow': {
+                    data: function () { 
+                        return{
+
+                        }
+                    },
+                    template: `<tr><td>电视</td><td>10</td></tr>`
+                 }
+            }
+        });
+    </script>
+</body>
+</html>
