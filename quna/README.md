@@ -1,6 +1,8 @@
+[TOC]
+
 # quna
 
-> A Vue.js project
+> A Vue.js project----去哪儿之景点页面
 
 ## Build Setup
 
@@ -18,4 +20,102 @@ npm run build
 npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 开发前的准备
+
+0.找cdn
+
++ https://www.jsdelivr.com/
++ [https://www.bootcdn.cn](https://www.bootcdn.cn/)
+
+1.开发前的准备
+
+①设置html字体
+
+```css
+html{font-size:50px;}
+```
+
+这样就可以直接将2倍图的数据/100得到rem的值，相当于分母为7.5
+
+②尽量用flex进行布局
+
+③使用stylus进行开发
+
+安装stylus和stylus-loader(开发依赖)
+
+```
+npm install stylus stylus-loader --save-dev
+```
+
+④在styles文件夹中放入
+
+- reset.css———样式重置
+- border.css———移动端1px边框问题
+- variable.styl———保存stylus中的变量
+
+⑤在build/webpack.config.js中设置别名
+
+```javascript
+// resolve:解析
+resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
+      'styles': resolve('src/assets/styles')
+    }
+ },
+```
+
+⑥移动端300ms点击延迟问题：某些机型、某些浏览器上，click事件会延迟300ms执行，体验不好
+
+解决：库fastclick
+
+```
+npm install fastclick --save
+```
+
+```javascript
+import FastClick from 'fastclick'
+// 使用
+FastClick.attach(document.body);
+```
+
+## 首页
+
+效果图：
+
+![image-20190826171449520](static/imgs/image-20190826171449520.png)
+
+![image-20190826171540020](../../../../Users/lsb/Library/Application Support/typora-user-images/image-20190826171540020.png)
+
+遇到的问题：
+
+1.左右定宽，中间宽度自适应的三栏布局
+
+左float:left
+
+右float:right
+
+中间
+
+```css
+position:abosulute
+top:0;
+bottom:0;
+left:.7rem
+right:1.4rem
+margin:auto 0
+```
+
+2.vue-awesome-swiper版本不同，选项对象不同
+
+## 城市选择页面
+
+旧版：
+
+![image-20190830105534348](static/imgs/image-20190830105534348.png)
+
+新版：
+
+![image-20190830154129001](../../../../Users/lsb/Library/Application Support/typora-user-images/image-20190830154129001.png)
