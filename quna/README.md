@@ -87,11 +87,13 @@ FastClick.attach(document.body);
 
 ![image-20190826171449520](static/imgs/image-20190826171449520.png)
 
-![image-20190826171540020](../../../../Users/lsb/Library/Application Support/typora-user-images/image-20190826171540020.png)
+![image-20190902150008598](static/imgs/image-20190902150008598.png)
 
 遇到的问题：
 
-1.左右定宽，中间宽度自适应的三栏布局
+1.三栏布局
+
+(1)左右定宽，中间宽度自适应的三栏布局
 
 左float:left
 
@@ -100,12 +102,26 @@ FastClick.attach(document.body);
 中间
 
 ```css
-position:abosulute
-top:0;
-bottom:0;
-left:.7rem
-right:1.4rem
-margin:auto 0
+.div{
+  position:abosulute
+  top:0;
+	bottom:0;
+	left:.7rem
+	right:1.4rem
+	margin:auto 0
+  /* 垂直居中 */
+}
+```
+
+(2)三栏自适应的布局
+
+```css
+.parent{
+	display:flex;
+}
+.middle{
+  flex-grow: 1;
+}
 ```
 
 2.vue-awesome-swiper版本不同，选项对象不同
@@ -118,4 +134,4 @@ margin:auto 0
 
 新版：
 
-![image-20190830154129001](../../../../Users/lsb/Library/Application Support/typora-user-images/image-20190830154129001.png)
+![image-20190902150104984](static/imgs/image-20190902150104984.png)
