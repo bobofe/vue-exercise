@@ -81,6 +81,20 @@ import FastClick from 'fastclick'
 FastClick.attach(document.body);
 ```
 
+⑦在style中引入其他的css/sass/styl文件
+
+```css
+@import "~@/...."
+```
+
+第一个@：在css中使用import前面要加@
+
+~ ：表示这是一个别名的路径
+
+@ ：src的别名
+
+⑧修改了webpack的配置项，或是安装了新的插件/库，都要重启服务器
+
 ## 首页
 
 效果图：

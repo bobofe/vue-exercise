@@ -14,7 +14,7 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
-fastClick.attach('document.body')
+fastClick.attach(document.body)
 
 /* eslint-disable no-new */
 new Vue({

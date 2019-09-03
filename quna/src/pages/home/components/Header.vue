@@ -21,11 +21,14 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+  /*@import "../../../assets/styles/variable.styl"*/
+  /*@import "~@/assets/styles/variable.styl"*/
+  @import "~styles/variable.styl"
   .header
     display flex
     height .8rem;
     line-height .8rem
-    background #25a4bb
+    background $bgColor
     .back
       width 0.7rem
       margin-top 0.2rem
@@ -34,7 +37,7 @@ export default {
         border .2rem solid transparent
         border-right .2rem solid #ffffff
       .green
-        border-right .2rem solid #25a4bb
+        border-right .2rem solid $bgColor
         left : -0.15rem
         top : -0.2rem
     .search
