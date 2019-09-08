@@ -1,4 +1,72 @@
-
 $fontSize = 12px
 
 $bgColor = #25a4bb
+
+// 移动端1px边框
+$border-1px {
+  box-sizing: border-box
+  position: absolute
+  content: '';
+  left: 0
+  top: 0
+  width: 200%
+  height: 200%
+  transform-origin: left top
+  transform: scale(0.5)
+}
+
+//  全边框,可以加圆角
+border-1px($color, $radius = 0) {
+  position: relative
+  &:before {
+    border: 1px solid $color
+    border-radius: $radius
+    @extend $border-1px
+  }
+}
+
+// 上边框
+border-1px-t($color) {
+  position: relative
+  &:before {
+    border-top: 1px solid $color
+    @extend $border-1px
+  }
+}
+
+// 下边框
+border-1px-b($color) {
+  position: relative
+  &:after {
+    border-bottom: 1px solid $color
+    @extend $border-1px
+  }
+}
+
+// 上下边框
+border-1px-tb($color) {
+  position: relative
+  &:after {
+    border-top: 1px solid $color
+    border-bottom: 1px solid $color
+    @extend $border-1px
+  }
+}
+
+// 左边框
+border-1px-l($color) {
+  position: relative
+  &:before {
+    border-left: 1px solid $color
+    @extend $border-1px
+  }
+}
+
+// 右边框
+border-1px-r($color) {
+  position: relative
+  &:after {
+    border-right: 1px solid $color;
+    @extend $border-1px
+  }
+}

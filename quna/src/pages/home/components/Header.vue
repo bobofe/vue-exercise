@@ -9,14 +9,22 @@
       <span class="iconfont">&#xe632;</span>输入城市/景点/游玩主题
     </div>
     <div class="city">
-      <span>北京</span><i class="arrow-top"></i>
+      <span>{{this.currentCity}}</span><i class="arrow-top"></i>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: ''
+  name: '',
+  props: {
+    city: String
+  },
+  computed: {
+    currentCity: function () {
+      return this.city
+    }
+  }
 }
 </script>
 

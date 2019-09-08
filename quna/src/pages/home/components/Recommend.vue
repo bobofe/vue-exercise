@@ -16,8 +16,8 @@
           <div class="description" v-if="item.show">{{item.description}}</div>
         </div>
       </div>
-      <div class="get-all">查看所有产品</div>
     </div>
+    <div class="get-all border-topbottom">查看所有产品</div>
   </div>
 </template>
 
@@ -84,16 +84,12 @@ export default {
 
 <style lang="stylus" scoped>
 .recommend-wrapper
-  padding 0.3rem
-  padding-bottom 0
   background: #fff
   .recommend-title
     font-size .35rem
-    font-weight bold
-    padding-bottom  0.3rem
+    padding 0.3rem
   .like-list-item
-    border-bottom 1px solid #ccc
-    padding 0.2rem 0
+    padding 0.2rem 0.3rem
     display flex
     flex-wrap wrap
     .like-img
@@ -132,5 +128,7 @@ export default {
     color: #49C2D4
     text-align center
     font-size .3rem
-    line-height .8rem
+    line-height 1rem
+    &:before
+      background: #ccde0e0e0
 </style>

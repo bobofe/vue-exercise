@@ -95,6 +95,8 @@ FastClick.attach(document.body);
 
 ⑧修改了webpack的配置项，或是安装了新的插件/库，都要重启服务器
 
+
+
 ## 首页
 
 效果图：
@@ -139,6 +141,85 @@ FastClick.attach(document.body);
 ```
 
 2.vue-awesome-swiper版本不同，选项对象不同
+
+3.移动端图片占位问题
+
+如果组件中的图片没有加载出来，此时img的高度为0，下面的DOM就会顶上来，组件中的图片加载出来后，又将DOM撑下去，这样会造成页面的抖动
+
+解决：在外面增加一个div
+
+```css
+div{
+	  width:100%;   // 图片的宽度
+    height:0;
+  	overflow:hidden;
+  	padding-bottom:30%; //图片高宽比
+}
+```
+
+等价于：
+
+```
+div{
+		width:100%;
+		heigt:30.vw;
+}
+```
+
+这种写法有兼容性问题
+
+问题：需要给每个组件和图片都占位吗？
+
+4.category页面布局+css样式
+
+这是一个好的布局方案
+
+```html
+<div class="icons">
+   <div class="icon">
+     <!-- 给img嵌套一层div方便布局 -->
+      <div class="icon-img">
+         <img src="http://img1.qunarzz.com/piao/fusion/1803/3e/86314b2af03b7502.png" alt="">
+      </div>
+   		<div class="keywords">故宫</div>
+   </div>
+</div>
+```
+
+```css
+.icons{
+	height:0;
+	width:100%;
+	padding-bottom:50%;
+	over-flow:hidden;
+}
+.icon{
+	width:25%;
+	height:0;
+	padding-bottom:25%
+	float:left;
+	over-flow:hidden;
+}
+.icon-img{
+  position absolute
+  top 0
+  left 0
+  right 0
+  bottom 0.44rem
+  background: #ccc
+}
+.icon-img-container{
+	height:100%
+}
+```
+
+icons占位
+
+icon占位
+
+icon-img：由定位决定了它的宽度为父元素的宽度，高度为父元素的高度-0.44rem
+
+Icon-img-container的高度100%是针对父元素的高度，父元素的高度小于宽度，所以icon-img的高度由父元素决定，宽度由内容撑开
 
 ## 城市选择页面
 
