@@ -1,12 +1,12 @@
 <template>
   <div class="category-wrapper">
     <swiper :options="swiperOption" >
-      <swiper-slide v-for="(page,index) in pages" :key="index">
+      <swiper-slide v-for="(page,index) in pageNum" :key="index" >
         <!--   外层的包裹   -->
         <div class="category-nav-wrap">
           <!-- 单块 -->
           <div class="category-nav-item" v-for="item in page" :key="item.id">
-            <img :src="item.imgUrl" alt="">
+            <img :src="item.imgSrc" alt="">
             <p>{{item.desc}}</p>
           </div>
         </div>
@@ -28,8 +28,7 @@ export default {
         // 分页器
         pagination: '.swiper-pagination',
         paginationClickable: true
-      },
-      pages: []
+      }
     }
   },
   props: {
@@ -44,8 +43,11 @@ export default {
       return this.iconList
     },
     pageNum: function () {
+      console.log(this.iconList)
+      console.log(this.cateIconList)
       var pages = []
       var len = this.cateIconList.length
+      console.log(len)
       if (len > 8) {
         pages.push(this.cateIconList.slice(0, 8))
         pages.push(this.cateIconList.slice(8, this.cateIconList.length))
@@ -57,7 +59,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style lang="stylus" scoped>
@@ -70,7 +71,7 @@ export default {
   height 0.1rem
   border-radius 0.05rem
 .swiper-container
-  background: #fff
+  background #fff
   .category-nav-wrap
     width 100%
     font-size 14px

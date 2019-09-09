@@ -74,7 +74,7 @@ export default {
           item['show'] = false
         }
       })
-      console.log(this.lovedList)
+      // console.log(this.lovedList)
     }
   },
   computed: {

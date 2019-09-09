@@ -8,9 +8,11 @@
     <div class="search">
       <span class="iconfont">&#xe632;</span>输入城市/景点/游玩主题
     </div>
-    <div class="city">
-      <span>{{this.currentCity}}</span><i class="arrow-top"></i>
-    </div>
+    <router-link to="/city">
+      <div class="city">
+        <span>{{this.currentCity}}</span><i class="arrow-top"></i>
+      </div>
+    </router-link>
   </div>
 </template>
 

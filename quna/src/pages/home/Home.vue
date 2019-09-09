@@ -3,7 +3,7 @@
     <index-header :city="city"></index-header>
     <banner-carousel :swiper-imgs="swiperImgs"></banner-carousel>
     <category-nav :icon-list="iconList"></category-nav>
-    <hot-list :rankList="rankList"></hot-list>
+    <hot-list :rank-list="rankList"></hot-list>
     <recommend :recommend-list="recommendList"></recommend>
     <go :weekend-list="weekendList"></go>
     <download-app class="download-app"></download-app>
@@ -53,6 +53,7 @@ export default {
           this.weekendList = data.weekendList
           this.rankList = data.rankList
         }
+        console.log(this.iconList)
       }
     )
   }
